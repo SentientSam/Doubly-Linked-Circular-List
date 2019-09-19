@@ -1,0 +1,119 @@
+# log.txt
+# Samuel Lamb
+
+
+
+
+For this project the first thing I did was copy over all the files provided and also the area51 tests for flist.
+
+Next I created all the deliverable files aand started work on name.com
+
+My first major issues looked like this:
+
+amS abLm
+
+The name did not sort at all and was all but useless
+
+For quite a few tries I got Sam_Labm and could not figure out how to resolve the issue.
+what ended up working was decrementing the stack before the m like this:
+
+12a
+1a
+1++
+1++
+12m
+11S
+12_
+2ia
+2a
+22b
+21L
+2-- //This decrement fixed the mistake of the b coming before the m
+2++
+2++
+2im
+3=1
+3+=2
+3d
+q
+
+After that was resolved the output looks like this:
+
+Sam_Lamb 
+
+Which is as intended
+
+I copied over list2c.api into list2c.h as advised in the project files and chanced a few of the function types to bool (they were void)
+When this was hammered out the next step was to start on list2c.cpp and figure out how to configure those functions within.
+
+The functions I had to implement were Init, Excess, and Capacity
+Capacity simply takes excess and size and adds them to show the full capacity of a link structure.
+The excess are the components on the "Dark side" of link structures that are not always seen.
+
+Some of the errors I initially faced:
+
+In file included from ./list2c.h:257:0,
+                 from flist2c.cpp:24:
+./list2c.cpp:314:6: error: prototype for ‘void alt2c::List<T>::PopFront()’ does not match any in class ‘alt2c::List<T>’
+ void List<T>::PopFront() //oof
+      ^
+In file included from flist2c.cpp:24:0:
+./list2c.h:70:15: error: candidate is: bool alt2c::List<T>::PopFront()
+     bool      PopFront  ();              // Remove the Tval at front
+               ^
+In file included from ./list2c.h:257:0,
+                 from flist2c.cpp:24:
+./list2c.cpp:325:6: error: prototype for ‘void alt2c::List<T>::PopBack()’ does not match any in class ‘alt2c::List<T>’
+ void List<T>::PopBack() //oof
+      ^
+In file included from flist2c.cpp:24:0:
+./list2c.h:71:15: error: candidate is: bool alt2c::List<T>::PopBack()
+     bool      PopBack   ();              // Remove the Tval at back
+               ^
+In file included from ./list2c.h:257:0,
+                 from flist2c.cpp:24:
+./list2c.cpp:430:6: error: redefinition of ‘bool alt2c::List<T>::Empty() const’
+ bool List<T>::Empty()  const
+      ^
+In file included from flist2c.cpp:24:0:
+./list2c.h:95:15: error: ‘bool alt2c::List<T>::Empty() const’ previously declared here
+     bool      Empty    () const { return head_->next_ == tail_; }
+               ^
+In file included from flist2c.cpp:24:0:
+./list2c.h:392:10: error: expected initializer before ‘<’ token
+ void List<T>::ShowHT (std::ostream& os, char ofc) const
+          ^
+./list2c.h:416:10: error: expected initializer before ‘<’ token
+ void List<T>::CheckLinks(std::ostream& os) const
+          ^
+./list2c.h:444:10: error: expected initializer before ‘<’ token
+ void List<T>::CheckIters(std::ostream& os) const
+          ^
+make: *** [flist2c.x] Error 1
+
+
+
+There were a few errors when the webmail was checked that I did not expect.
+<      x1.Dump(*osptr): HGDSAMNBVCXFZ**KJ
+---
+     x1.Dump(*osptr): HGDSAMNBVCXZ**KJ
+61,62c61,62
+<   5 = x1.Excess();
+<   15 = x1.Capacity();
+---
+  4 = x1.Excess();
+  14 = x1.Capacity();
+
+  My file is printing an actra "F" that is not showing up
+  This puts the excess and capacity
+
+
+<      x1.Dump(*osptr): XBzCDEZ*AY*
+---
+     x1.Dump(*osptr): XBzCDEZ**
+
+The file here is printing an "AY" that I could not find an explainiation for
+
+
+
+otherwise the robocheck seemed to have gone well.
